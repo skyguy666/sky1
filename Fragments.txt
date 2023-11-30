@@ -1,0 +1,90 @@
+Spin.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="150dp"/>
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="110dp"/>
+
+
+</RelativeLayout>
+
+
+
+Spin.java
+
+package com.example.spin;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    String []names = {"values1","values2","values3","value4","value5"};
+    String []text = {"values1 text","values2 text","values3 text","value4 text","value5 text"};
+    ArrayAdapter<String> adapter;
+    Spinner spinner;
+    TextView textView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        spinner = findViewById(R.id.spinner2);
+        textView = findViewById(R.id.textview1);
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,names);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i)
+                {
+                    case 0:
+                        textView.setText(""+text[i]);
+                        break;
+                    case 1:
+                        textView.setText(""+text[i]);
+                        break;
+                    case 2:
+                        textView.setText(""+text[i]);
+                        break;
+                    case 3:
+                        textView.setText(""+text[i]);
+                        break;
+                    case 4:
+                        textView.setText(""+text[i]);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+}
